@@ -1,4 +1,4 @@
-window.config = {
+const config = {
   "property": {
     "streetAddress": "1303 Hilly Lane ",
     "city": "North Grenville ",
@@ -9,7 +9,7 @@ window.config = {
   "realtor": {
     "fullName": "Christine Smith",
     "title": "REALTOR®",
-    "phone": "null",
+    "phone": "(613) 862-1127 ",
     "email": "christine@driscollpeca.com",
     "photoUrl": "https://salesgenius.s3.ca-central-1.amazonaws.com/uploads/upload-522395869_18512258038048642_5362730613341176316_n.jpg",
     "bio": "With years of real estate service under our belt, we can assure you that you are in good hands with our team. We are committed to listening to our clients, focusing on their needs and using keen negotiating skills to ensure a successful transaction for both buyers and sellers. With deep local knowledge and a true passion for real estate, we're committed to helping you find the perfect place to call home. Let's make your next move an exciting and rewarding one — we can't wait to work with you!",
@@ -27,17 +27,15 @@ window.config = {
   "openHouse": {
     "eventDate": "",
     "bundleItems": [
-            {
-                  "icon": "fas fa-home",
-                  "text": "Full Property Listing",
-                  "url": "https://www.realtor.ca/real-estate/29049666/1303-hilly-lane-north-grenville-802-north-grenville-twp-kemptville-east"
-            },
-            {
-                  "icon": "fas fa-video",
-                  "text": "Video Tour",
-                  "url": "https://youtube.com/shorts/0UWJA00W5bo?feature=share"
-            }
-      ]
+      {
+        "icon": "fas fa-home",
+        "text": "Full Property Listing"
+      },
+      {
+        "icon": "fas fa-video",
+        "text": "Video Tour"
+      }
+    ]
   },
   "meta": {
     "pageTitlePrefix": "🏡 Christine Smith Open House",
@@ -60,36 +58,72 @@ window.config = {
       "id": "agent_status",
       "questionText": "Are you currently exploring homes with a real estate agent?",
       "options": [
-        { "value": "committed", "text": "Yes, I'm committed to an agent." },
-        { "value": "not_committed", "text": "No, I'm not committed to an agent." },
-        { "value": "gathering_info", "text": "Just gathering information at this stage." }
+        {
+          "value": "committed",
+          "text": "Yes, I'm committed to an agent."
+        },
+        {
+          "value": "not_committed",
+          "text": "No, I'm not committed to an agent."
+        },
+        {
+          "value": "gathering_info",
+          "text": "Just gathering information at this stage."
+        }
       ]
     },
     {
       "id": "interest_level",
       "questionText": "How interested are you in this Detached?",
       "options": [
-        { "value": "very_interested", "text": "Very interested, actively looking." },
-        { "value": "somewhat_interested", "text": "Somewhat interested, keeping options open." },
-        { "value": "just_browsing", "text": "Just browsing for now." }
+        {
+          "value": "very_interested",
+          "text": "Very interested, actively looking."
+        },
+        {
+          "value": "somewhat_interested",
+          "text": "Somewhat interested, keeping options open."
+        },
+        {
+          "value": "just_browsing",
+          "text": "Just browsing for now."
+        }
       ]
     },
     {
       "id": "neighborhood_engagement",
       "questionText": "How do you usually enjoy the neighborhood?",
       "options": [
-        { "value": "resident_explorer", "text": "I live here and love exploring locally." },
-        { "value": "considering_move", "text": "I'm considering moving to this area." },
-        { "value": "just_visiting", "text": "Just visiting for the open house." }
+        {
+          "value": "resident_explorer",
+          "text": "I live here and love exploring locally."
+        },
+        {
+          "value": "considering_move",
+          "text": "I'm considering moving to this area."
+        },
+        {
+          "value": "just_visiting",
+          "text": "Just visiting for the open house."
+        }
       ]
     },
     {
       "id": "feature_attraction",
       "questionText": "What feature attracted you to this home?",
       "options": [
-        { "value": "design_layout", "text": "The design and layout." },
-        { "value": "location_neighborhood", "text": "The location and neighborhood." },
-        { "value": "home_price", "text": "The price of the home." }
+        {
+          "value": "design_layout",
+          "text": "The design and layout."
+        },
+        {
+          "value": "location_neighborhood",
+          "text": "The location and neighborhood."
+        },
+        {
+          "value": "home_price",
+          "text": "The price of the home."
+        }
       ]
     }
   ],
