@@ -15,600 +15,955 @@
     <meta name="twitter:description" content="Welcome to the Open House" />
     <meta name="twitter:image" content="https://www.gta-homes.com/wp-content/uploads/what-is-an-open-house-01.jpg" /> <!-- Match Config -->
     <!-- ★★★ END: SOCIAL SHARE META TAGS ★★★ -->
-
+    
+    <!-- FONTS: Editorial & Elegant -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- ANIMATION ENGINE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="config.js"></script>
 
     <style>
-        /* --- Root Variables and Base Styles --- */
+        /* 
+         * ----------------------------------------------------------
+         * 1. THE PALETTE (Rose Gold & Alabaster)
+         * ----------------------------------------------------------
+         */
         :root {
-            --primary-color: #e0c58f; --secondary-color: #1b6ca8; --accent-color: #c08497;
-            --dark-bg: #0f0f0f; --card-dark-bg: #181818; --light-text-color: #fafafa;
-            --medium-text-color: #cccccc; --header-bg: rgba(15, 15, 15, 0.65);
-            --header-bg-scrolled: rgba(15, 15, 15, 0.85); --glass-blur: 22px;
-            --glass-bg: rgba(28, 28, 28, 0.65); --glass-border: rgba(224, 197, 143, 0.2);
-            --glass-shadow: 0 15px 45px 0 rgba(0, 0, 0, 0.4);
-            --glass-inner-shadow: inset 0 0 25px rgba(224, 197, 143, 0.06);
-            --border-radius: 18px; --transition-speed: 0.6s;
-            --cubic-bezier-smooth-out: cubic-bezier(0.165, 0.84, 0.44, 1);
-            --font-size-base: clamp(0.875rem, 1.5vw + 0.5rem, 1.05rem);
-            --font-size-h1: clamp(2.2rem, 5vw + 1rem, 3.8rem);
-            --font-size-h2: clamp(1.8rem, 4vw + 0.8rem, 2.8rem);
-            --font-size-h3: clamp(1.4rem, 3vw + 0.6rem, 2rem);
-            --font-size-large: clamp(1.1rem, 2vw + 0.5rem, 1.4rem);
-            --font-size-medium: clamp(1rem, 1.8vw + 0.4rem, 1.2rem);
-            --font-size-small: clamp(0.85rem, 1.2vw + 0.4rem, 1rem);
-            /* Corrected minimum input font size for clamp */
-             --font-size-input: clamp(1rem, 1.8vw + 0.4rem, 1.05rem); /* Min 1rem (16px) */
+            --bg-base: #fdfcfb; /* Soft Cream */
+            --bg-gradient: radial-gradient(circle at top right, #fdfbf7, #f5f0ed);
+            
+            --accent-rose: #d4af9b; /* Muted Rose */
+            --accent-gold: #c5a059; /* Champagne Gold */
+            --accent-blush: #eaddcf;
+            
+            --text-dark: #2a2a2a; /* Charcoal, not black */
+            --text-light: #666666;
+            
+            --glass-surface: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 20px 60px rgba(212, 175, 155, 0.15);
+            
+            --font-display: 'Italiana', serif;
+            --font-body: 'Cormorant Garamond', serif;
+            --font-ui: 'Montserrat', sans-serif;
+            
+            --ease-silk: cubic-bezier(0.33, 1, 0.68, 1);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; font-size: var(--font-size-base); }
-        body { font-family: 'Poppins', sans-serif; font-weight: 400; line-height: 1.8; color: var(--light-text-color); background-color: var(--dark-bg); background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.85)), var(--bg-image-url, url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        .container { max-width: 1100px; margin: auto; padding: 0 clamp(15px, 5vw, 30px); }
-        .section { padding: clamp(60px, 10vh, 100px) 0; opacity: 0; transform: translateY(60px); transition: opacity 1.3s var(--cubic-bezier-smooth-out), transform 1.3s var(--cubic-bezier-smooth-out); }
-        .section.visible { opacity: 1; transform: translateY(0); }
-        .section-title { font-family: 'Playfair Display', serif; font-size: var(--font-size-h2); font-weight: 700; color: var(--primary-color); text-align: center; margin-bottom: clamp(40px, 8vh, 70px); position: relative; padding-bottom: 20px; letter-spacing: 1.5px; }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: clamp(80px, 15vw, 120px); height: 2px; background: linear-gradient(90deg, transparent, var(--primary-color), transparent); opacity: 0.8; }
-        .glass-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border-radius: var(--border-radius); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow), var(--glass-inner-shadow); padding: clamp(30px, 6vw, 50px) clamp(30px, 7vw, 60px); margin-top: clamp(30px, 5vh, 50px); color: var(--light-text-color); position: relative; overflow: hidden; background-image: linear-gradient(160deg, rgba(28, 28, 28, 0.6) 0%, rgba(35, 35, 35, 0.7) 100%), var(--glass-bg); transition: background 0.8s ease-out; }
-        .section.visible .glass-card { background-image: none; }
-        .main-nav { position: fixed; top: 0; left: 0; width: 100%; background: var(--header-bg); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); padding: 18px 0; z-index: 1000; border-bottom: 1px solid rgba(224, 197, 143, 0.1); transition: background-color 0.4s ease, padding 0.4s ease, top 0.4s ease; }
-        .main-nav.scrolled { background: var(--header-bg-scrolled); padding: 14px 0; }
-        .main-nav .container { display: flex; justify-content: space-between; align-items: center; }
-        .header-left { display: flex; align-items: center; gap: clamp(15px, 3vw, 25px); }
-        .main-nav .logo { font-family: 'Montserrat', sans-serif; color: var(--light-text-color); font-size: clamp(1.4rem, 3vw, 1.7rem); font-weight: 600; text-decoration: none; }
-        .header-address { font-size: var(--font-size-small); color: var(--medium-text-color); font-weight: 300; border-left: 1px solid var(--glass-border); padding-left: clamp(15px, 3vw, 20px); opacity: 0.8; transition: opacity 0.4s ease; display: none; }
-        @media (min-width: 768px) { .header-address { display: block; } }
-        .main-nav ul { list-style: none; display: none; padding: 0; margin: 0; }
-        @media (min-width: 992px) { .main-nav ul { display: flex; } .main-nav ul li { margin-left: clamp(25px, 4vw, 40px); } .main-nav ul li a { color: var(--medium-text-color); text-decoration: none; font-weight: 500; padding: 10px 0; font-size: var(--font-size-small); letter-spacing: 0.8px; position: relative; transition: color var(--transition-speed) var(--cubic-bezier-smooth-out); } .main-nav ul li a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background-color: var(--primary-color); transition: width 0.4s var(--cubic-bezier-smooth-out); } .main-nav ul li a:hover { color: var(--light-text-color); } .main-nav ul li a:hover::after { width: 100%; } .main-nav ul li a.active { color: var(--primary-color); font-weight: 600; } .main-nav ul li a.active::after { width: 100%; } }
-        @media (max-width: 991px) { .main-nav .container { justify-content: center; } .header-left { gap: 15px; } }
-        @media (max-width: 600px) { .header-address { display: none;} .main-nav .logo { font-size: clamp(1.3rem, 5vw, 1.5rem); } .main-nav { padding: 15px 0; } .main-nav.scrolled { padding: 12px 0; } }
-        #hero { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--light-text-color); padding: 100px 15px 60px; position: relative; overflow: hidden; }
-        #hero > * { position: relative; }
-        #hero .hero-title-line { font-family: 'Playfair Display', serif; font-size: var(--font-size-h1); font-weight: 700; margin-bottom: clamp(15px, 4vh, 30px); color: #fff; line-height: 1.2; display: inline-block; min-height: 1.2em; text-shadow: 1px 1px 30px rgba(0, 0, 0, 0.7); }
-        #hero .hero-title-line .highlight { color: var(--primary-color); }
-        #hero .hero-title-line:not(.typing-done)::after { content: ''; display: inline-block; width: 3px; height: 0.9em; background-color: var(--primary-color); margin-left: 8px; vertical-align: baseline; opacity: 1; animation: blink 0.8s step-end infinite; }
-        #hero .hero-title-line.typing-done::after { display: none; }
-        #hero p.subtitle { font-size: var(--font-size-large); margin-bottom: clamp(35px, 6vh, 55px); max-width: 850px; font-weight: 300; color: var(--medium-text-color); line-height: 1.9; opacity: 0.01; transform: translateY(15px) scale(0.98); transition: opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s; }
-        .cta-button { font-size: var(--font-size-medium); padding: clamp(16px, 2.5vw, 20px) clamp(35px, 6vw, 50px); display: inline-block; background: linear-gradient(135deg, var(--primary-color), #b89b59); color: var(--dark-bg); font-weight: 600; text-decoration: none; border-radius: 50px; letter-spacing: 1px; transition: all var(--transition-speed) var(--cubic-bezier-smooth-out); box-shadow: 0 8px 35px rgba(224, 197, 143, 0.25); position: relative; overflow: hidden; opacity: 0.01; transform: translateY(15px) scale(0.98); transition: opacity 1s ease-out 0.4s, transform 1s ease-out 0.4s, background 0.4s, box-shadow 0.4s; }
-        #hero.typing-complete p.subtitle { transition-delay: 0.3s; }
-        #hero.typing-complete .cta-button { transition-delay: 0.5s; }
-        #hero.typing-complete p.subtitle, #hero.typing-complete .cta-button { opacity: 1; transform: translateY(0) scale(1); }
-        .cta-button::before { content: ''; position: absolute; top: 0; left: -110%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); transform: skewX(-25deg); transition: left 0.8s ease; }
-        .cta-button:hover::before { left: 130%; }
-        .cta-button:hover { background: linear-gradient(135deg, #b89b59, var(--primary-color)); transform: scale(1.05) translateY(-4px); box-shadow: 0 12px 45px rgba(224, 197, 143, 0.35); }
-        .cta-button i { margin-left: 15px; }
-        @keyframes blink { 50% { opacity: 0; } }
-        #whats-included ul { list-style: none; padding: 0; margin: 20px auto; max-width: 750px; }
-        #whats-included li { background: rgba(255, 255, 255, 0.02); margin-bottom: 22px; padding: clamp(18px, 3vw, 24px) clamp(20px, 4vw, 30px); border-radius: 14px; display: flex; align-items: center; transition: transform 0.5s var(--cubic-bezier-smooth-out), background-color 0.5s var(--cubic-bezier-smooth-out), box-shadow 0.5s var(--cubic-bezier-smooth-out); border: 1px solid rgba(224, 197, 143, 0.12); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        #whats-included li:hover { transform: scale(1.03) translateX(8px); background-color: rgba(224, 197, 143, 0.08); box-shadow: 0 8px 25px rgba(0,0,0,0.25); }
-        #whats-included li i { font-size: clamp(1.6rem, 3vw, 2rem); color: var(--secondary-color); margin-right: clamp(20px, 4vw, 30px); width: 40px; text-align: center; transition: transform 0.5s var(--cubic-bezier-smooth-out); }
-        #whats-included li:hover i { transform: scale(1.15) rotate(4deg); }
-        #whats-included li span { font-size: var(--font-size-medium); font-weight: 400; color: var(--light-text-color); }
-        #about-realtor .realtor-content { display: flex; flex-direction: column; align-items: center; gap: 30px; text-align: center;}
-        @media (min-width: 768px) { #about-realtor .realtor-content { flex-direction: row; text-align: left; gap: clamp(40px, 6vw, 60px); } }
-        #about-realtor .realtor-image-container { flex-shrink: 0; width: clamp(150px, 30vw, 200px); height: clamp(150px, 30vw, 200px); position: relative; border-radius: 50%; box-shadow: 0 0 45px rgba(224, 197, 143, 0.3); margin-bottom: 15px; }
-        @media (min-width: 768px) { #about-realtor .realtor-image-container { margin-bottom: 0; } }
-        #about-realtor .realtor-image-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: clamp(5px, 1vw, 7px) solid var(--primary-color); display: block; }
-        #about-realtor .realtor-bio { flex-grow: 1; }
-        #about-realtor .realtor-bio h3 { font-family: 'Montserrat', sans-serif; font-size: var(--font-size-h3); color: var(--primary-color); margin-bottom: 18px; font-weight: 600; }
-        #about-realtor .realtor-bio p { font-size: var(--font-size-small); line-height: 1.9; color: var(--medium-text-color); font-weight: 300; }
-        #signin p.subtitle { color: var(--medium-text-color); text-align: center; margin-top: calc(-1 * clamp(25px, 5vh, 40px)); margin-bottom: clamp(35px, 6vh, 50px); font-size: var(--font-size-medium); font-weight: 300; }
-        #signin .form-grid { display: grid; grid-template-columns: 1fr; gap: clamp(25px, 4vh, 35px); margin-top: 35px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .form-group label { display: block; margin-bottom: 12px; font-weight: 500; color: var(--medium-text-color); font-size: var(--font-size-small); letter-spacing: 0.7px; }
 
-        /* --- ★★★ CSS FIX FOR INPUT FONT SIZE ★★★ --- */
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"] {
+        /* Fallback for fonts if loaded slowly, or to be overwritten */
+        .hero-title { font-family: var(--font-display); }
+        h1, h2, h3 { font-family: var(--font-display); }
+
+        /* Base Reset */
+        *, *::before, *::after { box-sizing: border-box; cursor: none; } /* Custom cursor enabled */
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-base);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 
+         * ----------------------------------------------------------
+         * 2. ATMOSPHERE & CURSOR
+         * ----------------------------------------------------------
+         */
+        
+        /* Soft Halo Cursor */
+        #cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 30px; height: 30px;
+            background: rgba(212, 175, 155, 0.3);
+            border: 1px solid rgba(212, 175, 155, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s, background 0.4s;
+            backdrop-filter: blur(2px);
+        }
+        #cursor.hovered {
+            width: 60px; height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-gold);
+        }
+        
+        /* Film Grain Texture (Subtle) */
+        .texture-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 5;
+            mix-blend-mode: multiply;
+        }
+
+        /* Canvas Background */
+        #silk-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* 
+         * ----------------------------------------------------------
+         * 3. TYPOGRAPHY & UTILITIES
+         * ----------------------------------------------------------
+         */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 6%; position: relative; z-index: 10; }
+        
+        h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; line-height: 1; color: var(--text-dark); }
+        
+        .text-gold { color: var(--accent-gold); }
+        
+        .eyebrow {
+            font-family: var(--font-ui);
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-rose);
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* The "Pearl" Button */
+        .btn-pearl {
+            background: var(--bg-base); /* Was rgba(255,255,255,0.8) */
+            border: 1px solid var(--accent-gold); /* Was --accent-blush */
+            color: var(--text-dark);
+            padding: 1.2rem 3.5rem;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border-radius: 50px; /* Rounded pill shape */
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s var(--ease-silk);
+            box-shadow: 0 10px 30px rgba(212, 175, 155, 0.2);
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-pearl::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--accent-gold); /* Was linear gradient */
+            transform: translateX(-100%);
+            transition: 0.6s;
+            z-index: -1;
+        }
+        .btn-pearl:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 155, 0.4);
+            border-color: var(--accent-gold);
+            color: var(--bg-base); /* Invert text on hover */
+        }
+        .btn-pearl:hover::after { transform: translateX(100%); }
+
+        /* 
+         * ----------------------------------------------------------
+         * 4. LAYOUT SECTIONS
+         * ----------------------------------------------------------
+         */
+        
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 2.5rem 0;
+            z-index: 100;
+            transition: 0.6s var(--ease-silk);
+        }
+        nav.scrolled {
+            padding: 1rem 0;
+            background: rgba(253, 252, 251, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .brand { 
+            font-family: var(--font-display); 
+            font-size: 2rem; 
+            color: var(--text-dark); 
+            text-decoration: none;
+            letter-spacing: -0.02em; 
+        }
+
+        /* Hero */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-image-frame {
+            position: absolute;
+            top: 15%; left: 15%; right: 15%; bottom: 15%;
+            overflow: hidden;
+            z-index: 1;
+            border-radius: 300px 300px 0 0; /* Arch Shape */
+            opacity: 0; /* JS Fade In */
+            transform: scale(0.9);
+        }
+        .hero-bg-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transform: scale(1.2); /* For Parallax */
+        }
+        .hero-content span.eyebrow {
+             color: var(--accent-gold) !important; 
+             letter-spacing: 0.5em;
+        }
+        .hero-title {
+            font-size: clamp(3.5rem, 9vw, 9rem);
+            color: #fff;
+            text-shadow: 0 10px 40px rgba(255,255,255,0.5); /* Lighter shadow for dark text */
+            margin-bottom: 1rem;
+        }
+        
+        /* Amenities (The "Details") */
+        section { padding: 140px 0; position: relative; }
+        
+        .glass-panel {
+            background: var(--glass-surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .amenity-card {
+            text-align: center;
+            padding: 2rem;
+            transition: 0.4s;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.4);
+        }
+        .amenity-card:hover { background: #fff; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .amenity-icon { font-size: 2rem; color: var(--accent-rose); margin-bottom: 1rem; }
+        
+        /* Host Section */
+        .host-layout { display: flex; align-items: center; gap: 5rem; flex-wrap: wrap-reverse; }
+        .host-img-wrapper {
+            flex: 1; min-width: 300px;
+            position: relative;
+            border-radius: 200px 200px 0 0; /* Arch */
+            overflow: hidden;
+        }
+        .host-img { width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; transition: 0.5s; }
+        .host-img:hover { transform: scale(1.05); }
+
+        /* Form Styling (Editorial Lines) */
+        .form-line {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        .input-editorial {
             width: 100%;
-            padding: clamp(15px, 2.2vw, 18px) 25px; /* Responsive Padding */
-            padding-left: clamp(50px, 8vw, 60px); /* Space for icon */
-            border: 1px solid rgba(224, 197, 143, 0.2);
-            border-radius: 14px;
-             /* Ensure font size is at least 16px (1rem) to prevent iOS zoom */
-             font-size: var(--font-size-input); /* Use variable set to clamp(1rem,...) */
-            font-family: 'Poppins', sans-serif;
-            background-color: rgba(22, 22, 22, 0.75);
-            color: var(--light-text-color);
-            transition: all 0.4s var(--cubic-bezier-smooth-out);
-            min-height: 50px; /* Good tap height */
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            transition: 0.4s;
+            border-radius: 0;
         }
-        /* --- End Input Font Size Fix --- */
+        .input-editorial:focus {
+            outline: none;
+            border-bottom-color: var(--accent-rose);
+        }
+        .label-editorial {
+            position: absolute;
+            top: 0; left: 0;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-light);
+            transform: translateY(1.5rem);
+            transition: 0.4s;
+            pointer-events: none;
+        }
+        .input-editorial:focus ~ .label-editorial,
+        .input-editorial:not(:placeholder-shown) ~ .label-editorial {
+            transform: translateY(-1rem);
+            color: var(--accent-rose);
+            font-size: 0.65rem;
+        }
 
-        .form-group input::placeholder { color: var(--medium-text-color); opacity: 0.4; }
-        .form-group input:focus { outline: none; border-color: var(--primary-color); background-color: rgba(30, 30, 30, 0.85); box-shadow: 0 0 22px rgba(224, 197, 143, 0.2); }
-        .input-wrapper { position: relative; }
-        .input-wrapper i { position: absolute; left: clamp(18px, 3vw, 22px); top: 50%; transform: translateY(-50%); color: var(--medium-text-color); font-size: clamp(1rem, 2vw, 1.15rem); transition: color 0.4s var(--cubic-bezier-smooth-out); pointer-events: none; }
-        .input-wrapper input:focus + i { color: var(--primary-color); }
-        .submit-btn { background: linear-gradient(135deg, var(--primary-color), #b89b59); color: var(--dark-bg); border: none; padding: clamp(16px, 2.5vw, 18px) 40px; font-size: var(--font-size-medium); font-weight: 600; border-radius: 50px; cursor: pointer; transition: all var(--transition-speed) var(--cubic-bezier-smooth-out); width: 100%; margin-top: 20px; letter-spacing: 1px; box-shadow: 0 7px 30px rgba(224, 197, 143, 0.2); display: flex; align-items: center; justify-content: center; gap: 15px; position: relative; overflow: hidden; min-height: 55px; }
-        .submit-btn:hover { background: linear-gradient(135deg, #b89b59, var(--primary-color)); transform: translateY(-5px) scale(1.03); box-shadow: 0 12px 40px rgba(224, 197, 143, 0.3); }
-        .submit-btn:active { transform: translateY(-2px) scale(1.01); box-shadow: 0 7px 30px rgba(224, 197, 143, 0.25); }
-        .submit-btn i { font-size: clamp(1.1rem, 2vw, 1.25rem); }
-        .submit-btn.loading { background: var(--medium-text-color); cursor: not-allowed; color: rgba(15,15,15, 0.7); }
-        .submit-btn .button-text { transition: opacity 0.3s ease; }
-        .submit-btn.loading .button-text { opacity: 0; }
-        .submit-btn .spinner { display: inline-block; position: absolute; width: 20px; height: 20px; border: 3px solid rgba(15, 15, 15, 0.3); border-radius: 50%; border-top-color: var(--dark-bg); animation: spin 1s ease-in-out infinite; opacity: 0; transition: opacity 0.3s ease; }
-        .submit-btn.loading .spinner { opacity: 1; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* Checkbox */
+        .consent-wrapper {
+            display: flex; gap: 15px; align-items: flex-start;
+            font-size: 0.85rem; color: var(--text-light);
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.5);
+            border-radius: 12px;
+        }
+        .consent-wrapper input { accent-color: var(--accent-rose); margin-top: 3px; }
 
-        /* Modal Styles (Simplified visibility focus) */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 15, 15, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 1050; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0s linear 0.4s; }
-        .modal-overlay.visible { opacity: 1; visibility: visible; transition-delay: 0s; }
-        .modal-content { background: var(--card-dark-bg); padding: clamp(30px, 5vw, 40px); border-radius: var(--border-radius); box-shadow: 0 10px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(224, 197, 143, 0.15); text-align: center; max-width: 550px; width: 90%; position: relative; transform: translateY(0); opacity: 1; /* Basic display */ transition: none; }
-        .modal-step { display: none; opacity: 1; }
-        .modal-step.active { display: block !important; opacity: 1 !important; animation: fadeInStep 0.4s ease-out forwards; }
-        @keyframes fadeInStep { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        .modal-step .question-text { font-size: var(--font-size-large); font-weight: 500; color: var(--light-text-color); margin-bottom: 35px; line-height: 1.6; }
-        .modal-options { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-        .modal-option-btn { display: block; width: 100%; max-width: 380px; padding: 15px 25px; font-size: var(--font-size-medium); font-weight: 500; color: var(--light-text-color); background-color: rgba(255, 255, 255, 0.08); border: 1px solid var(--glass-border); border-radius: 12px; cursor: pointer; text-align: center; transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease; }
-        .modal-option-btn:hover { background-color: rgba(224, 197, 143, 0.15); border-color: rgba(224, 197, 143, 0.3); transform: translateY(-2px); }
-        .modal-option-btn:active { transform: translateY(0); background-color: rgba(224, 197, 143, 0.2); }
-        #modal-step-final i.icon { font-size: clamp(4rem, 10vw, 5rem); color: var(--primary-color); margin-bottom: 25px; display: inline-block; text-shadow: 0 0 20px rgba(224, 197, 143, 0.4); }
-        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 80% { transform: scale(1.05); } 100% { transform: scale(1); opacity: 1;} }
-        #modal-step-final i.icon { animation: popIn 0.6s var(--cubic-bezier-smooth-out) 0.3s backwards; }
-        #modal-step-final h2 { font-family: 'Playfair Display', serif; font-size: var(--font-size-h3); color: var(--primary-color); margin-bottom: 15px; font-weight: 700; }
-        #modal-step-final p#modalMainMessage { font-size: var(--font-size-medium); margin-bottom: 30px; line-height: 1.8; color: var(--medium-text-color); font-weight: 300;}
-        #modal-step-final p#modalHost { font-size: var(--font-size-small); color: var(--medium-text-color); }
-        #modal-step-final strong { color: var(--light-text-color); font-weight: 500; }
-        .modal-close-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.8rem; color: var(--medium-text-color); cursor: pointer; padding: 5px; line-height: 1; transition: color 0.3s ease, transform 0.3s ease; z-index: 2; }
-        .modal-close-btn:hover { color: var(--light-text-color); transform: rotate(90deg); }
-        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1060; pointer-events: none; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-15px) scale(1.03); } }
+        /* Footer */
+        footer {
+            background: #f5f0ed;
+            padding: 5rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .social-list a { color: var(--text-dark); margin: 0 15px; font-size: 1.2rem; transition: 0.3s; }
+        .social-list a:hover { color: var(--accent-rose); }
 
-         /* Footer Styles (Restored) */
-        footer { background-color: #0a0a0a; color: var(--medium-text-color); text-align: center; padding: clamp(50px, 8vh, 80px) clamp(15px, 5vw, 30px) clamp(30px, 5vh, 50px); margin-top: clamp(60px, 10vh, 100px); border-top: 1px solid rgba(224, 197, 143, 0.15); }
-        footer .footer-content { max-width: 850px; margin: auto; }
-        footer .brokerage-logo img { max-height: clamp(45px, 8vw, 60px); margin-bottom: 30px; }
-        footer h4 { font-family: 'Montserrat', sans-serif; font-size: var(--font-size-large); font-weight: 500; margin-bottom: 25px; color: var(--primary-color); letter-spacing: 1.2px; }
-        footer p { margin-bottom: 15px; font-size: var(--font-size-small); line-height: 1.8; font-weight: 300;}
-        footer strong { color: var(--light-text-color); font-weight: 500; }
-        footer a { color: var(--primary-color); text-decoration: none; transition: color 0.4s ease; }
-        footer a:hover { color: #fff2d8; }
-        footer p i { margin-right: 8px; opacity: 0.8; }
-        footer p i.fa-envelope { margin-left: 15px; }
-        footer .social-icons { margin: clamp(25px, 5vh, 40px) 0; }
-        footer .social-icons a { color: var(--medium-text-color); font-size: clamp(1.4rem, 3vw, 1.7rem); margin: 0 clamp(12px, 2.5vw, 18px); transition: color 0.4s var(--cubic-bezier-smooth-out), transform 0.4s var(--cubic-bezier-smooth-out); }
-        footer .social-icons a:hover { color: var(--primary-color); transform: scale(1.2) rotate(-5deg); }
-        footer .copyright { margin-top: clamp(30px, 6vh, 50px); font-size: clamp(0.75rem, 1.5vw + 0.3rem, 0.9rem); opacity: 0.6; font-weight: 300;}
-        footer .copyright a { color: var(--primary-color); opacity: 0.8; }
-        footer .copyright a:hover { color: #fff2d8; opacity: 1; }
+        /* 
+         * ----------------------------------------------------------
+         * 5. MODAL (Concierge Style)
+         * ----------------------------------------------------------
+         */
+        .modal-curtain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(253, 252, 251, 0.95);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.6s var(--ease-silk);
+        }
+        .modal-curtain.active { opacity: 1; pointer-events: all; }
+        .modal-inner { max-width: 600px; text-align: center; transform: translateY(30px); transition: 0.6s; }
+        .modal-curtain.active .modal-inner { transform: translateY(0); }
+        
+        .option-pill {
+            display: block; width: 100%;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.08);
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border-radius: 50px;
+            font-family: var(--font-ui);
+            color: var(--text-dark);
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+        .option-pill:hover {
+            background: var(--accent-blush);
+            border-color: var(--accent-rose);
+            transform: scale(1.02);
+        }
 
-        @media (max-width: 767px) { /* Target typical mobile device widths */
-            body {
-                background-attachment: fixed; /* Reverting to fixed as per user feedback to abandon scroll */
-                background-size: cover;  
-            }
-            #signInForm input[type="text"],
-            #signInForm input[type="email"],
-            #signInForm input[type="tel"] {
-                font-size: 16px !important; /* Force 16px font size on mobile */
-            }
+        /* Curtain Loader */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fdfcfb; z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+        
+        /* Responsive */
+        @media(max-width: 768px) {
+            nav { display: none; }
+            section { padding: 60px 0; }
+            .hero-image-frame { top: 0; left: 0; right: 0; bottom: 0; border-radius: 0; opacity: 1; }
+            .hero-title { font-size: 4rem; }
+            .host-layout { gap: 2rem; }
+            .glass-panel { padding: 2rem; }
         }
 
     </style>
 </head>
 <body>
-    <canvas id="confetti-canvas"></canvas>
-    <nav class="main-nav" id="mainNav">
-        <div class="container">
-             <div class="header-left">
-                <a href="#" class="logo" id="navBrandLogo"></a>
-                <span class="header-address" id="navAddress"></span>
-             </div>
-             <ul id="navLinksList">
-                <li><a href="#hero" class="active">Welcome</a></li>
-                <li><a href="#whats-included"> Home Package</a></li>
-                <li><a href="#about-realtor">Your Host</a></li>
-                <li><a href="#signin">Register</a></li>
-             </ul>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <h1 id="introTitle" style="font-size: 2rem; letter-spacing: 0.3em;">MAISON</h1>
+    </div>
+
+    <!-- FX LAYERS -->
+    <div id="cursor"></div>
+    <div class="texture-overlay"></div>
+    <canvas id="silk-canvas"></canvas>
+    <canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:3000;"></canvas>
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <div class="container nav-inner">
+            <a href="#" class="brand hover-target" id="navBrand">MAISON</a>
+            <span class="eyebrow" id="navAddress" style="margin:0; color: var(--text-light);">123 Avenue Montaigne</span>
         </div>
     </nav>
 
-    <section id="hero" class="section visible">
-        <div class="hero-title-line" id="heroTitle"></div>
-        <p class="subtitle" id="heroSubtitle"></p>
-        <a href="#signin" class="cta-button" id="heroCta">Register & Receive Home &amp; Neighbourhood Info Package <i class="fas fa-chevron-right"></i></a>
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-image-frame" id="heroFrame">
+            <img src="" alt="Interior" class="hero-bg-img" id="heroImg">
+        </div>
+        <div class="container hero-content">
+            <span class="eyebrow" style="letter-spacing: 0.5em;">WELCOME TO</span>
+            <h1 class="hero-title" id="heroTitle">THE<br>RESIDENCE</h1>
+            <a href="#register" class="btn-pearl hover-target">Get Full Home Package</a>
+        </div>
     </section>
 
-    <main>
-        <section id="whats-included" class="section"> <div class="container"> <div class="glass-card"> <h2 class="section-title">The Property Home &amp; Neighbourhood Info Package</h2> <ul id="bundleList"></ul> </div> </div> </section>
-        <section id="about-realtor" class="section"> <div class="container"> <div class="glass-card"> <h2 class="section-title">Your Dedicated Host</h2> <div class="realtor-content"> <div class="realtor-image-container"> <img src="" alt="Realtor Photo" id="realtorPhoto"> </div> <div class="realtor-bio"> <h3 id="realtorNameBio"></h3> <p id="realtorBioText"></p> </div> </div> </div> </div> </section>
-        <section id="signin" class="section">
-            <div class="container">
-                 <div class="glass-card" id="signInCard">
-                     <h2 class="section-title">Register Your Interest</h2>
-                     <p class="subtitle">Kindly provide your details...</p>
-                     <form id="signInForm">
-                         <div class="form-grid">
-                            <div class="form-group"><label for="fullName">Full Name:</label><div class="input-wrapper"><input type="text" id="fullName" name="fullName" placeholder="Example Full Name" required><i class="fas fa-user-tie"></i></div></div>
-                            <div class="form-group"><label for="email">Email Address:</label><div class="input-wrapper"><input type="email" id="email" name="email" placeholder="Example Email" required><i class="fas fa-envelope-open-text"></i></div></div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number (Preferred):</label>
-                                <div class="input-wrapper">
-                                    <input type="tel" id="phone" name="phone" placeholder="Example Phone"
-                                           inputmode="numeric"> <!-- ★★★ INPUTMODE ADDED HERE ★★★ -->
-                                    <i class="fas fa-phone-volume"></i>
-                                </div>
-                            </div>
-                        <div class="form-group" style="grid-column: 1 / -1; text-align: left;">
-                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 10px; border: 1px solid var(--glass-border); border-radius: 8px; background-color: rgba(255,255,255,0.03);">
-                                <input type="checkbox" id="consentCheckbox" name="consent" required style="margin-top: 5px; width: auto; min-height: auto; flex-shrink: 0; accent-color: var(--primary-color);">
-                                <label for="consentCheckbox" style="font-size: clamp(0.75rem, 1.8vw + 0.3rem, 0.9rem); color: var(--medium-text-color); font-weight: 300; line-height: 1.6;">
-                                    I agree to be contacted by <strong id="consentBrokerageName" style="color: var(--light-text-color);">[Brokerage Name]</strong> via call, email, and text. To opt-out, you can reply ‘stop’ at any time or click the unsubscribe link in the emails. Message and data rates may apply. <a href="#" id="consentPrivacyLink" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration: underline;">Privacy Policy</a>
-                                </label>
-                            </div>
-                        </div>
-                            <div class="form-group"><button type="submit" class="submit-btn"><span class="button-text">Request My Home &amp; Neighbourhood Info Package</span><div class="spinner"></div></button></div>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-        </section>
-    </main>
+    <!-- INTRO TEXT -->
+    <div class="container" style="padding-top: 0; text-align: center; max-width: 1000px;">
+        <p style="font-size: 1.4rem; line-height: 1.8; color: var(--text-dark); font-style: italic;" id="heroSubtitle">
+            An invitation to timeless elegance.
+        </p>
+    </div>
 
-    <footer> <!-- Footer HTML Structure -->
-        <div class="container footer-content">
-             <div class="brokerage-logo"> <img src="" alt="Brokerage Logo" id="footerBrokerageLogo"> </div>
-            <h4 id="footerBrokerageName"></h4>
-            <p><strong id="footerRealtorName"></strong> | <span id="footerRealtorTitle"></span></p>
-            <p><i class="fas fa-mobile-alt" style="margin-right: 8px;"></i> <a href="" id="footerRealtorPhoneLink"><span id="footerRealtorPhone"></span></a> | <i class="fas fa-envelope" style="margin-left: 15px; margin-right: 8px;"></i> <a href="" id="footerRealtorEmailLink"><span id="footerRealtorEmail"></span></a></p>
-            <p><i class="fas fa-map-pin" style="margin-right: 8px;"></i> <span id="footerBrokerageAddress"></span></p>
-             <div class="social-icons" id="footerSocialIcons"></div>
-            <p class="copyright" id="footerCopyright"></p>
+    <!-- AMENITIES -->
+    <section id="details">
+        <div class="container">
+            <div class="glass-panel" id="detailsPanel">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <span class="eyebrow">Property Details</span>
+                    <h2 style="font-size: 3.5rem;">Explore the Home</h2>
+                </div>
+                <div class="amenities-grid" id="amenitiesGrid">
+                    <!-- JS Injected -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOST -->
+    <section id="host">
+        <div class="container">
+            <div class="host-layout">
+                <div class="host-info" style="flex: 1.5;">
+                    <span class="eyebrow">Your Concierge</span>
+                    <h2 style="font-size: 4rem; margin-bottom: 0.5rem;" id="realtorName">Victoria Saint</h2>
+                    <p id="realtorTitle" class="eyebrow" style="margin-bottom: 2rem; color: var(--text-dark);"></p>
+                    <div style="width: 40px; height: 1px; background: var(--accent-rose); margin-bottom: 2rem;"></div>
+                    <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 3rem;" id="realtorBio">
+                        Curating homes for the discerning few. I am dedicated to ensuring your experience at The Residence is as seamless as it is inspiring.
+                    </p>
+                    <div id="realtorContactInfo" style="margin-bottom: 2rem; color: var(--text-light); font-family: var(--font-ui); font-size: 0.9rem;"></div>
+                    <div class="social-list" id="socialLinks"></div>
+                </div>
+                <div class="host-img-wrapper">
+                    <img src="" alt="Host" class="host-img" id="realtorPhoto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTER -->
+    <section id="register" style="padding-bottom: 10rem;">
+        <div class="container">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 5rem;">
+                    <span class="eyebrow">Full Home Package</span>
+                    <h2 style="font-size: 3.5rem;">Get Everything You Need</h2>
+                    <p style="color: var(--text-light); margin-top: 1rem;">Register to instantly receive the floor plans, brochure, and full property details.</p>
+                </div>
+
+                <form id="signInForm">
+                    <div class="form-line">
+                        <input type="text" id="fullName" class="input-editorial hover-target" placeholder=" " required>
+                        <label class="label-editorial">Full Name</label>
+                    </div>
+                    
+                    <div class="form-line">
+                        <input type="email" id="email" class="input-editorial hover-target" placeholder=" " required>
+                        <label class="label-editorial">Email Address</label>
+                    </div>
+
+                    <div class="form-line">
+                        <input type="tel" id="phone" class="input-editorial hover-target" placeholder=" " required inputmode="numeric">
+                        <label class="label-editorial">Phone Number</label>
+                    </div>
+
+                    <div class="consent-wrapper hover-target">
+                        <input type="checkbox" id="consent" required>
+                        <label for="consent">
+                            I agree to be contacted by <span id="consentBrokerage" style="color:var(--text-dark); font-weight:600;">[Brokerage]</span> via call, email, and text. To opt-out, you can reply ‘stop’ at any time or click the unsubscribe link in the emails. Message and data rates may apply. <a href="#" id="consentPrivacy" style="color:var(--accent-rose);">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn-pearl hover-target" id="submitBtn">
+                            <span id="btnText">Send Me The Package</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <img id="footerLogo" src="" alt="Brokerage Logo" style="max-height: 60px; margin-bottom: 1.5rem; display: none;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;" id="footerBrand">MAISON</h2>
+            <p style="color: var(--text-light); margin-bottom: 2rem;" id="footerAddress"></p>
+            <div style="margin-bottom: 1.5rem;">
+                <a href="#" id="footerPrivacy" class="hover-target" style="color: var(--text-light); font-size: 0.85rem; text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s;">Privacy Policy</a>
+            </div>
+            <div style="font-size: 0.85rem; opacity: 0.6;">
+                &copy; <span id="year"></span> All Rights Reserved.
+            </div>
         </div>
     </footer>
 
-    <div class="modal-overlay" id="successModalOverlay">
-        <div class="modal-content" id="successModalContent" role="dialog" aria-modal="true" aria-labelledby="modalStepTitle">
-            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close"><i class="fas fa-times" aria-hidden="true"></i></button>
-            <div id="modal-steps-container"><!-- Dynamic Step Content Goes Here --></div>
-             <div class="modal-step" id="modal-step-final" style="display: none;"> <!-- Starts hidden -->
-                 <i class="fas fa-check-circle icon"></i>
-                 <h2 id="modalHeader">Thank You!</h2>
-                 <p id="modalMainMessage">Info Sent For <strong id="modalAddress"></strong> Open House Bundle.<br><br><span id="modalEmailPrompt">You will receive an email...</span></p>
-                 <p id="modalHost">Your Host: <strong id="modalRealtorName"></strong></p>
-             </div>
+    <!-- MODAL -->
+    <div class="modal-curtain" id="modalOverlay">
+        <div class="modal-inner" id="modalContent">
+            <!-- Dynamic JS -->
         </div>
     </div>
 
-
+    <!-- LIBS -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <!-- Load config first -->
-    <script src="config.js"></script>
+
     <script>
-        // Config object is now loaded from config.js
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check if config object loaded correctly
+        /**
+         * ==================================================================
+         * STATE & CONFIG
+         * ==================================================================
+         */
+        let storedInitialPayload = null;
+        let collectedAnswers = {};
+
+        /**
+         * ==================================================================
+         * INITIALIZATION
+         * ==================================================================
+         */
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Check Config
             if (typeof config === 'undefined') {
-                 console.error("FATAL: Configuration file (config.js) failed to load. Cannot initialize page.");
-                 // Optionally display an error message to the user on the page itself
-                 document.body.innerHTML = '<p style="color:red; text-align:center; margin-top: 50px; font-size:18px; width:100%;">Configuration Error: config.js not found or invalid.</p>';
-                 return; // Stop execution if config is missing
+                console.error("Config not loaded");
+                return;
             }
 
-            // --- DOM References ---
-            const mainNav = document.getElementById('mainNav');
-            const heroSection = document.getElementById('hero');
-            const heroTitleElement = document.getElementById('heroTitle');
-            const heroSubtitle = document.getElementById('heroSubtitle');
-            const signInForm = document.getElementById('signInForm');
-            const successModalOverlay = document.getElementById('successModalOverlay');
-            const successModalContent = document.getElementById('successModalContent');
-            const modalStepsContainer = document.getElementById('modal-steps-container');
-            const modalStepFinal = document.getElementById('modal-step-final');
-            const modalCloseBtn = document.getElementById('modalCloseBtn');
-            const confettiCanvas = document.getElementById('confetti-canvas');
-            const myConfetti = (typeof confetti === 'function' && confettiCanvas) ? confetti.create(confettiCanvas, { resize: true, useWorker: true }) : null;
-            const submitButton = signInForm?.querySelector('.submit-btn');
-            const buttonTextSpan = submitButton?.querySelector('.button-text'); // Ensure this exists if using
+            // 1.5. Apply Theme Colors
+            applyThemeColors();
 
-            // --- State Variables ---
-            let currentStepIndex = 0;
-            let collectedAnswers = {};
-            let storedInitialPayload = null; // Stores the entire initial payload for the second submission
+            // 2. Populate Content (Data Mapping)
+            populateV2Data();
 
-            // --- Helper functions ---
-             function setTextContent(id, text) { const el=document.getElementById(id); if(el) el.textContent=text||''; else console.warn(`ID '${id}' not found.`); }
-             function setHTMLContent(id, html) { const el=document.getElementById(id); if(el) el.innerHTML=html||''; else console.warn(`ID '${id}' not found.`); }
-             function setImage(id, src, alt) { const el=document.getElementById(id); if(el && el.tagName==='IMG'){ el.src=src||''; el.alt=alt||'Image'; } else console.warn(`ID '${id}' not IMG or not found.`); }
-             function setLinkHref(id, href) { const el=document.getElementById(id); if(el && el.tagName==='A'){ el.href=href||'#'; } else console.warn(`ID '${id}' not A or not found.`); }
-             function populateSocialIcons(containerId, socialLinks) { const container = document.getElementById(containerId); if (!container) { console.warn(`Social container '${containerId}' not found.`); return; } container.innerHTML = ''; const platformIcons = { linkedin: 'fab fa-linkedin-in', instagram: 'fab fa-instagram', website: 'fas fa-globe', facebook: 'fab fa-facebook-f', twitter: 'fab fa-twitter'}; for (const platform in socialLinks) { const url = socialLinks[platform]; if (url && url !== "#" && url !== "") { const iconClass = platformIcons[platform]; if (iconClass) { const link = document.createElement('a'); link.href = url; link.target = "_blank"; link.rel = "noopener noreferrer"; link.setAttribute('aria-label', platform.charAt(0).toUpperCase() + platform.slice(1)); link.innerHTML = `<i class="${iconClass}" aria-hidden="true"></i>`; container.appendChild(link); } } } }
+            // 3. Remove Preloader
+            setTimeout(() => {
+                document.getElementById('preloader').style.transform = "translateY(-100%)";
+                
+                // Trigger Hero Animations after loader
+                gsap.to("#heroFrame", { opacity: 1, borderRadius: "300px 300px 0 0", transform: "scale(1)", duration: 1.5, ease: "power2.out", delay: 0.5 });
+            }, 1000);
 
-            // --- Apply Initial Config Data Function ---
-            function populateInitialData() {
-                try {
-                    if (config.property.backgroundImageUrl && config.property.backgroundImageUrl !== "[BACKGROUND_IMAGE_URL_HERE]") { document.body.style.setProperty('--bg-image-url', `url('${config.property.backgroundImageUrl}')`); }
-                    document.title = `${config.meta.pageTitlePrefix} | ${config.property.streetAddress} | ${config.brokerage.name}`;
-                    setTextContent('navBrandLogo', config.meta.navBrandLogoText || config.brokerage.name);
-                    setTextContent('navAddress', config.property.streetAddress);
-                    setTextContent('heroSubtitle', config.property.heroSubtitle);
-                    const bundleList = document.getElementById('bundleList');
-                    if (bundleList) { bundleList.innerHTML = ''; config.openHouse.bundleItems.forEach(item => { const li = document.createElement('li'); li.innerHTML = `<i class="${item.icon}" aria-hidden="true"></i> <span>${item.text}</span>`; bundleList.appendChild(li); }); } else { console.warn("Bundle list element not found."); }
-                    setImage('realtorPhoto', config.realtor.photoUrl, config.realtor.fullName);
-                    setTextContent('realtorNameBio', config.realtor.fullName);
-                    setHTMLContent('realtorBioText', config.realtor.bio);
-                    setTextContent('modalAddress', `${config.property.streetAddress}, ${config.property.city}`);
-                    setTextContent('modalRealtorName', config.realtor.fullName);
+            // 4. Animations (GSAP)
+            gsap.registerPlugin(ScrollTrigger);
 
-                    // Populate consent checkbox details
-                    const consentBrokerageNameEl = document.getElementById('consentBrokerageName');
-                    if (consentBrokerageNameEl) {
-                        consentBrokerageNameEl.textContent = config.brokerage.name || 'Your Company';
-                    }
-                    const consentPrivacyLinkEl = document.getElementById('consentPrivacyLink');
-                    if (consentPrivacyLinkEl) {
-                        consentPrivacyLinkEl.href = config.meta.privacyPolicyLink || '#';
-                    }
+            // Parallax Hero
+            gsap.to(".hero-bg-img", {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true }
+            });
 
-                    // **** FOOTER POPULATION RESTORED ****
-                    setImage('footerBrokerageLogo', config.brokerage.logoUrl, config.brokerage.name);
-                    setTextContent('footerBrokerageName', `${config.brokerage.name}`);
-                    setTextContent('footerRealtorName', config.realtor.fullName);
-                    setTextContent('footerRealtorTitle', config.realtor.title);
-                    // setTextContent('footerRealtorDre', config.realtor.dreNumber); // DRE number removed
-                    setTextContent('footerRealtorPhone', config.realtor.phone);
-                    setLinkHref('footerRealtorPhoneLink', `tel:${config.realtor.phone.replace(/\D/g,'')}`);
-                    setTextContent('footerRealtorEmail', config.realtor.email);
-                    setLinkHref('footerRealtorEmailLink', `mailto:${config.realtor.email}`);
-                    setTextContent('footerBrokerageAddress', config.brokerage.address);
-                    const currentYear = new Date().getFullYear();
-                    setHTMLContent('footerCopyright', `© ${currentYear} ${config.brokerage.name}. All Rights Reserved. Licensed Real Estate Brokerage. Equal Housing Opportunity. | <a href="${config.meta.privacyPolicyLink || '#'}">Privacy Policy</a>`); // Terms link removed
-                    populateSocialIcons('footerSocialIcons', config.realtor.social);
-                     // **** END FOOTER POPULATION ****
-                } catch (error) { console.error("Error populating data:", error); }
-            }
-            populateInitialData();
-
-             // --- General Page Logic ---
-             let lastScrollTop = 0; const handleScroll = () => { let scrollTop = window.pageYOffset || document.documentElement.scrollTop; if (mainNav) { if (scrollTop > 50) { mainNav.classList.add('scrolled'); } else { mainNav.classList.remove('scrolled'); } } setActiveLink(); }; window.addEventListener('scroll', handleScroll, { passive: true });
-             const handleHeroParallax = () => { const scrollY = window.pageYOffset; const parallaxFactor = 0.1; if (heroSection) { const title = heroSection.querySelector('#heroTitle'); const subtitle = heroSection.querySelector('#heroSubtitle'); const cta = heroSection.querySelector('#heroCta'); if(title) title.style.transform = `translateY(${scrollY * parallaxFactor * 0.5}px)`; if(subtitle) subtitle.style.transform = `translateY(${scrollY * parallaxFactor}px)`; if(cta) cta.style.transform = `translateY(${scrollY * parallaxFactor * 1.1}px)`; } }; if (window.innerWidth > 992) { window.addEventListener('scroll', handleHeroParallax, { passive: true }); }
-             const navLinks = document.querySelectorAll('#navLinksList li a'); const sectionsForNav = document.querySelectorAll('section[id]'); const setActiveLink = () => { let currentSectionId = 'hero'; const navHeight = mainNav ? mainNav.offsetHeight : 70; const scrollPosition = window.pageYOffset; sectionsForNav.forEach(section => { const sectionTop = section.offsetTop - navHeight - window.innerHeight * 0.3; const sectionBottom = sectionTop + section.offsetHeight; if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) { currentSectionId = section.getAttribute('id'); } }); const nearBottom = (window.innerHeight + scrollPosition) >= document.body.offsetHeight - 200; if (nearBottom && document.getElementById('signin')) { currentSectionId = 'signin'; } if (navLinks) { navLinks.forEach(link => { link.classList.remove('active'); const linkHref = link.getAttribute('href'); if (linkHref === `#${currentSectionId}`) { link.classList.add('active'); } }); } }; setActiveLink();
-             const titleHTML = `Welcome to <span class="highlight">${config.property.streetAddress}'s</span> Open House`; let titleCharIndex = 0; function typeWriter() { if (!heroTitleElement) return; if (titleCharIndex < titleHTML.length) { let currentHTML = heroTitleElement.innerHTML; if (titleHTML.charAt(titleCharIndex) === '<') { const tagEndIndex = titleHTML.indexOf('>', titleCharIndex); if (tagEndIndex !== -1) { currentHTML += titleHTML.substring(titleCharIndex, tagEndIndex + 1); heroTitleElement.innerHTML = currentHTML; titleCharIndex = tagEndIndex + 1; } else { currentHTML += titleHTML.charAt(titleCharIndex); heroTitleElement.innerHTML = currentHTML; titleCharIndex++; } } else { currentHTML += titleHTML.charAt(titleCharIndex); heroTitleElement.innerHTML = currentHTML; titleCharIndex++; } const speed = titleHTML.charAt(titleCharIndex - 1) === '>' ? 5 : 45 + Math.random() * 35; setTimeout(typeWriter, speed); } else { heroTitleElement.classList.add('typing-done'); heroSection.classList.add('typing-complete'); } } if(heroTitleElement) setTimeout(typeWriter, 500);
-             const sections = document.querySelectorAll('.section:not(#hero)'); const observerOptions = { root: null, threshold: 0.15, rootMargin: "0px 0px -10% 0px" }; const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); /* observer.unobserve(entry.target); */ } }); }, observerOptions); sections.forEach(section => { observer.observe(section); });
-
-            // --- Confetti Function ---
-             function fireCoolConfetti() { if (!myConfetti) { console.warn("Confetti library not loaded."); return; } const defaults = { startVelocity: 35, spread: 360, ticks: 80, zIndex: 1060, particleCount: 120, }; const colors = config.settings.confettiColors || ['#e0c58f', '#ffffff', '#1b6ca8']; myConfetti({ ...defaults, particleCount: 80, angle: 60, spread: 70, origin: { x: 0.1, y: 0.7 }, colors: colors, scalar: 1.1 }); myConfetti({ ...defaults, particleCount: 80, angle: 120, spread: 70, origin: { x: 0.9, y: 0.7 }, colors: colors, scalar: 1.1 }); myConfetti({ ...defaults, particleCount: 150, spread: 100, origin: { y: 0.5 }, colors: colors, scalar: 1.2 }); myConfetti({ ...defaults, particleCount: 30, shapes: ['star'], colors: ['#FFD700', '#FFEA00'], scalar: 0.75, origin: { y: 0.6 } }); }
-
-
-            // --- Modal Step Display & Handling (Simplified CSS Focus) ---
-            async function displayModalStep(stepIndex) { // Made async
-                console.log(`Displaying step index: ${stepIndex}`);
-                if (!successModalContent || !modalStepsContainer || !modalStepFinal) { console.error("Modal structure elements missing!"); if (submitButton) { submitButton.disabled = false; submitButton.classList.remove('loading'); } return; }
-                if (!successModalOverlay) { console.error("Modal overlay missing!"); return; }
-
-                // Ensure overlay is visible
-                if (!successModalOverlay.classList.contains('visible')) { console.warn("Overlay wasn't visible when trying to display step. Forcing visible."); successModalOverlay.classList.add('visible'); }
-
-                modalStepsContainer.innerHTML = '';
-                modalStepFinal.style.display = 'none';
-                modalStepFinal.classList.remove('active');
-
-                try {
-                    if (stepIndex >= 0 && stepIndex < config.modalQuestions.length) {
-                        const questionData = config.modalQuestions[stepIndex];
-                        console.log("Creating question step:", questionData.id);
-                        const stepDiv = document.createElement('div');
-                        stepDiv.classList.add('modal-step');
-                        stepDiv.id = `modal-step-${questionData.id}`;
-                        stepDiv.innerHTML = `
-                            <p class="question-text" id="modalStepTitle-${questionData.id}">${questionData.questionText}</p>
-                            <div class="modal-options">
-                                ${questionData.options.map(option => `
-                                    <button type="button" class="modal-option-btn"
-                                            data-step="${stepIndex}" data-question-id="${questionData.id}" data-answer="${option.value}">
-                                        ${option.text}
-                                    </button>
-                                `).join('')}
-                            </div>`;
-                        stepDiv.querySelectorAll('.modal-option-btn').forEach(button => button.addEventListener('click', handleAnswerClick));
-                        modalStepsContainer.appendChild(stepDiv);
-                        setTimeout(() => { stepDiv.classList.add('active'); }, 10); // Make active *after* appending
-
-                    } else {
-                        // All modal questions are done, now send the modal answers
-                        console.log("All modal questions answered. Preparing modal answers payload.");
-
-                        const modalQuestionResponsesText = [];
-                        if (typeof collectedAnswers === 'object' && collectedAnswers !== null) {
-                            for (const questionId in collectedAnswers) {
-                                if (Object.hasOwnProperty.call(collectedAnswers, questionId)) {
-                                    const answerValue = collectedAnswers[questionId];
-                                    const questionObj = config.modalQuestions.find(q => q.id === questionId);
-                                    if (questionObj) {
-                                        const optionObj = questionObj.options.find(opt => opt.value === answerValue);
-                                        modalQuestionResponsesText.push({
-                                            question: questionObj.questionText,
-                                            answer: optionObj ? optionObj.text : answerValue // Fallback to raw value
-                                        });
-                                    } else {
-                                        console.warn(`Question ID "${questionId}" not found in config.modalQuestions during modal answer processing.`);
-                                    }
-                                }
-                            }
-                        }
-
-                        // Construct the comprehensive payload for modal answers
-                        const modalAnswersPayload = {
-                            ...(storedInitialPayload || {}),      // Spread fields from stored initial payload
-                            formType: "modal_answers",            // Override formType
-                            submittedAt: new Date().toISOString(), // Update timestamp for this event
-                            questions: modalQuestionResponsesText // Add the processed modal questions
-                        };
-                        
-                        // Safety check: If storedInitialPayload was somehow null, log an error but proceed
-                        if (!storedInitialPayload) {
-                             console.error("CRITICAL: storedInitialPayload was null when constructing modal_answers payload. Sending potentially incomplete data.");
-                             // The payload will still be sent, but might lack initial contact/deployment info.
-                             // The formType will indicate it's modal_answers.
-                        }
-
-
-                        const visitorUrl = config.settings.visitorWebhookUrl;
-                        if (visitorUrl) {
-                            console.log(`Sending modal answers data to webhook: ${visitorUrl}`);
-                            console.log('Modal Answers Payload:', JSON.stringify(modalAnswersPayload, null, 2));
-                            try {
-                                const response = await fetch(visitorUrl, {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify(modalAnswersPayload),
-                                    mode: 'cors'
-                                });
-                                if (!response.ok) {
-                                    console.warn('Modal answers webhook failure:', response.status, await response.text());
-                                } else {
-                                    console.log('Modal answers webhook success!');
-                                }
-                            } catch (error) {
-                                console.error('Modal answers webhook error:', error);
-                            }
-                        } else {
-                            console.log("No webhook URL for modal answers. Skipping submission.");
-                        }
-
-                        // Proceed to show the final "Thank You" message
-                        console.log("Showing final step (Thank You message)");
-                        setTextContent('modalAddress', `${config.property.streetAddress}, ${config.property.city}`);
-                        setTextContent('modalRealtorName', config.realtor.fullName);
-                        modalStepFinal.style.display = 'block'; // Make final step visible
-                        setTimeout(() => { modalStepFinal.classList.add('active'); }, 10); // Add active class
-                        fireCoolConfetti();
-                    }
-                } catch(error) { console.error(`Error displaying modal step ${stepIndex}:`, error); hideSuccessModal(); }
-            }
-
-            function handleAnswerClick(event) {
-                 console.log("Answer click handled");
-                 try {
-                     const button = event.currentTarget;
-                     const stepIndex = parseInt(button.dataset.step, 10);
-                     const questionId = button.dataset.questionId;
-                     const answerValue = button.dataset.answer;
-                     if (isNaN(stepIndex)) { console.error("Invalid step index"); return; }
-
-                     collectedAnswers[questionId] = answerValue;
-                     console.log('Collected Answers:', collectedAnswers);
-
-                     const currentStep = document.getElementById(`modal-step-${questionId}`);
-                     if (currentStep) {
-                         currentStep.querySelectorAll('button').forEach(btn => btn.disabled = true);
-                         button.style.borderColor = 'var(--primary-color)'; button.style.backgroundColor = 'rgba(224, 197, 143, 0.2)';
-
-                         // Optional fade out before showing next
-                         const activeStep = modalStepsContainer.querySelector('.modal-step.active');
-                         if (activeStep) {
-                              activeStep.style.transition = 'opacity 0.3s ease-out';
-                              activeStep.style.opacity = '0';
-                              setTimeout(() => displayModalStep(stepIndex + 1), 300);
-                          } else {
-                               setTimeout(() => displayModalStep(stepIndex + 1), 300); // Fallback delay
-                          }
-
-                     } else { console.warn(`Could not find step ${questionId} to disable buttons.`); setTimeout(() => displayModalStep(stepIndex + 1), 300); }
-                 } catch (error) { console.error("Error handling answer click:", error); hideSuccessModal(); }
-             }
-
-            // --- Modal Control Functions ---
-             function showQuestionnaireModal() {
-                 console.log("showQuestionnaireModal called");
-                 if (!successModalOverlay) { console.error("Modal overlay element not found!"); if (submitButton) { submitButton.disabled = false; submitButton.classList.remove('loading'); } return; }
-                 currentStepIndex = 0; collectedAnswers = {};
-                 if(modalStepsContainer) modalStepsContainer.innerHTML = '';
-                 if(modalStepFinal) modalStepFinal.style.display = 'none'; modalStepFinal.classList.remove('active');
-
-                 successModalOverlay.classList.add('visible');
-                 console.log("Overlay class 'visible' added.");
-                 setTimeout(() => displayModalStep(currentStepIndex), 50); // Display first step
-             }
-
-             function hideSuccessModal() {
-                 console.log("hideSuccessModal called");
-                 if(!successModalOverlay) return;
-                 successModalOverlay.classList.remove('visible');
-                 setTimeout(() => {
-                    signInForm?.reset();
-                    if (submitButton) {
-                        submitButton.disabled = false; submitButton.classList.remove('loading');
-                        const textSpan = submitButton.querySelector('.button-text');
-                        if (textSpan) { textSpan.textContent = "Request My Home &amp; Neighbourhood Info Package"; }
-                        else if (!submitButton.querySelector('.button-text')) { submitButton.innerHTML = '<span class="button-text">Request My Compendium</span><div class="spinner"></div>'; }
-                    }
-                    if(modalStepsContainer) modalStepsContainer.innerHTML = '';
-                    if(modalStepFinal) { modalStepFinal.style.display = 'none'; modalStepFinal.classList.remove('active'); }
-                 }, 400);
-             }
-
-            // --- Event Listeners for Modal ---
-             if (modalCloseBtn) { modalCloseBtn.addEventListener('click', hideSuccessModal); }
-             if (successModalOverlay) { successModalOverlay.addEventListener('click', (event) => { if (event.target === successModalOverlay) { hideSuccessModal(); } }); }
-             document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && successModalOverlay?.classList.contains('visible')) { hideSuccessModal(); } });
-
-
-            // --- Sign In Form Submission Logic ---
-            if (signInForm && submitButton) {
-                signInForm.addEventListener('submit', async (event) => {
-                    event.preventDefault();
-                    submitButton.disabled = true; submitButton.classList.add('loading');
-                    // Stage 1: Initial Contact Submission
-                    const fullName = document.getElementById('fullName').value;
-                    const email = document.getElementById('email').value;
-                    const phone = document.getElementById('phone').value;
-                    const propertyAddress = `${config.property.streetAddress}, ${config.property.cityStateZip}`;
-                    const submittedAt = new Date().toISOString();
-
-                    // Construct initialPayload
-                    const initialPayload = {
-                        formType: "initial_contact",
-                        email: email,
-                        fullName: fullName,
-                        phone: phone,
-                        propertyAddress: propertyAddress,
-                        submittedAt: submittedAt,
-                        questions: [], // Empty for initial contact
-                        agentEmail: config.realtor.email, // Add agent email
-                        ...(config.deploymentInfo || {})
-                    };
-                    
-                    storedInitialPayload = initialPayload; // Store the entire initial payload
-
-                    const visitorUrl = config.settings.visitorWebhookUrl;
-                    if (visitorUrl) {
-                        console.log(`Sending initial contact data to webhook: ${visitorUrl}`);
-                        console.log('Initial Payload:', JSON.stringify(initialPayload, null, 2));
-                        try {
-                            // Not strictly awaiting here to show modal faster, but errors won't be caught to prevent modal.
-                            // For robust error handling that stops flow, `await` this.
-                            fetch(visitorUrl, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(initialPayload),
-                                mode: 'cors'
-                            }).then(async response => {
-                                if (!response.ok) {
-                                    console.warn('Initial contact webhook failure:', response.status, await response.text());
-                                } else {
-                                    console.log('Initial contact webhook success!');
-                                }
-                            }).catch(error => {
-                                console.error('Initial contact webhook error:', error);
-                            });
-                        } catch (error) { // This catch might not be effective if fetch isn't awaited
-                            console.error('Outer error during initial contact submission:', error);
-                        }
-                    } else {
-                        console.log("No visitor webhook URL. Skipping initial contact submission.");
-                    }
-
-                    // Proceed to show the modal questionnaire
-                    showQuestionnaireModal();
-                    // The submitButton state is reset by hideSuccessModal or when showQuestionnaireModal is called.
+            // Reveal Sections
+            gsap.utils.toArray("#detailsPanel, .host-layout").forEach(el => {
+                gsap.from(el, {
+                    opacity: 0, y: 50, duration: 1.2, ease: "power3.out",
+                    scrollTrigger: { trigger: el, start: "top 80%" }
                 });
-             } else { console.error("Sign in form or submit button not found!"); }
+            });
 
+            // 5. Init Effects
+            initCursor();
+            initSilkCanvas();
         });
-    </script>
 
+        function applyThemeColors() {
+            if (config.settings) {
+                const root = document.documentElement;
+                if (config.settings.primaryColor) root.style.setProperty('--text-dark', config.settings.primaryColor);
+                if (config.settings.secondaryColor) root.style.setProperty('--accent-gold', config.settings.secondaryColor);
+                if (config.settings.accentColor) root.style.setProperty('--accent-rose', config.settings.accentColor);
+                if (config.settings.neutralColor) root.style.setProperty('--bg-base', config.settings.neutralColor);
+            }
+        }
+
+        function populateV2Data() {
+            // Meta
+            document.title = `${config.meta.pageTitlePrefix} | Maison`;
+            
+            // Intro
+            setText('introTitle', config.property.streetAddress || 'MAISON');
+
+            // Nav
+            setText('navBrand', config.realtor.fullName || 'MAISON');
+            setText('navAddress', config.property.streetAddress);
+
+            // Hero
+            const heroImg = document.getElementById('heroImg');
+            if (heroImg && config.property.backgroundImageUrl) heroImg.src = config.property.backgroundImageUrl;
+            
+            // Use street address as title if available, allowing breaks
+            const titleHTML = config.property.streetAddress ? config.property.streetAddress.toUpperCase().replace(/^(.*?)\s+(.*)$/, '$1<br>$2') : "THE<br>RESIDENCE";
+            setHTML('heroTitle', titleHTML);
+            setText('heroSubtitle', config.property.heroSubtitle);
+
+            // Amenities
+            const grid = document.getElementById('amenitiesGrid');
+            if (grid && config.openHouse.bundleItems) {
+                grid.innerHTML = '';
+                config.openHouse.bundleItems.forEach(item => {
+                    // Ensure icon has 'fa-' prefix if missing or just use as is if it has classes
+                    // Config usually has full class string "fas fa-spa"
+                    grid.innerHTML += `
+                        <div class="amenity-card hover-target">
+                            <i class="${item.icon} amenity-icon"></i>
+                            <h3 style="font-size:1.2rem; font-family:var(--font-ui); letter-spacing:0.1em;">${item.text}</h3>
+                        </div>`;
+                });
+            }
+
+            // Host
+            setText('realtorName', config.realtor.fullName);
+            setText('realtorTitle', config.realtor.title);
+            setText('realtorBio', config.realtor.bio);
+            const realtorPhoto = document.getElementById('realtorPhoto');
+            if (realtorPhoto) realtorPhoto.src = config.realtor.photoUrl;
+
+            // Host Contact Info (New)
+            const contactInfo = document.getElementById('realtorContactInfo');
+            if (contactInfo) {
+                contactInfo.innerHTML = `
+                    <a href="tel:${config.realtor.phone.replace(/\D/g,'')}" class="hover-target" style="color:inherit; text-decoration:none; margin-right:15px;">${config.realtor.phone}</a>
+                    <a href="mailto:${config.realtor.email}" class="hover-target" style="color:inherit; text-decoration:none;">${config.realtor.email}</a>
+                `;
+            }
+
+            // Socials
+            const socialContainer = document.getElementById('socialLinks');
+            if (socialContainer && config.realtor.social) {
+                socialContainer.innerHTML = '';
+                const platformIcons = { linkedin: 'fab fa-linkedin-in', instagram: 'fab fa-instagram', website: 'fas fa-globe', facebook: 'fab fa-facebook-f', twitter: 'fab fa-twitter'};
+                for (const [platform, url] of Object.entries(config.realtor.social)) {
+                    if (url) {
+                        const iconClass = platformIcons[platform] || 'fas fa-link';
+                        socialContainer.innerHTML += `<a href="${url}" class="hover-target" target="_blank"><i class="${iconClass}"></i></a>`;
+                    }
+                }
+            }
+
+            // Footer / Consent
+            setText('consentBrokerage', config.brokerage.name);
+            setText('footerBrand', config.brokerage.name);
+            setText('footerAddress', config.brokerage.address);
+            setText('year', new Date().getFullYear());
+            
+            const footerLogo = document.getElementById('footerLogo');
+            if (footerLogo && config.brokerage.logoUrl) {
+                footerLogo.src = config.brokerage.logoUrl;
+                footerLogo.style.display = 'inline-block';
+            }
+            
+            // Update Privacy Policy Link in form
+            const privacyLink = document.getElementById('consentPrivacy');
+            if (privacyLink && config.meta.privacyPolicyLink) {
+                privacyLink.href = config.meta.privacyPolicyLink;
+                privacyLink.target = "_blank";
+            }
+
+            // Footer Privacy Policy
+            const footerPrivacy = document.getElementById('footerPrivacy');
+            if (footerPrivacy && config.meta.privacyPolicyLink) {
+                footerPrivacy.href = config.meta.privacyPolicyLink;
+                footerPrivacy.target = "_blank";
+            }
+        }
+
+        // Helpers
+        function setText(id, txt) { const el = document.getElementById(id); if (el) el.textContent = txt; }
+        function setHTML(id, html) { const el = document.getElementById(id); if (el) el.innerHTML = html; }
+
+
+        /**
+         * ==================================================================
+         * FORM & LOGIC
+         * ==================================================================
+         */
+        const form = document.getElementById('signInForm');
+
+        // Phone Mask
+        document.getElementById('phone')?.addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Button Loading State
+                const btn = document.getElementById('submitBtn');
+                const btnText = document.getElementById('btnText');
+                if (btnText) btnText.textContent = "Verifying...";
+                
+                // 1. Build Initial Payload
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const submittedAt = new Date().toISOString();
+
+                const initialPayload = {
+                    formType: "initial_contact",
+                    email: email,
+                    fullName: fullName,
+                    phone: phone,
+                    propertyAddress: config.property.streetAddress, // simplified for v2
+                    submittedAt: submittedAt,
+                    questions: [],
+                    agentEmail: config.realtor.email,
+                    ...(config.deploymentInfo || {})
+                };
+
+                storedInitialPayload = initialPayload; // Store for step 2
+
+                // 2. Send to Webhook
+                const visitorUrl = config.settings.visitorWebhookUrl;
+                if (visitorUrl) {
+                    try {
+                        fetch(visitorUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(initialPayload)
+                        }); // Fire and forget for speed
+                    } catch (err) {
+                        console.error(err);
+                    }
+                }
+
+                // 3. Open Modal (Delay for effect)
+                setTimeout(() => {
+                    openModal(0);
+                }, 800);
+            });
+        }
+
+        function openModal(index) {
+            const modal = document.getElementById('modalOverlay');
+            const content = document.getElementById('modalContent');
+            modal.classList.add('active');
+            content.innerHTML = '';
+
+            // Guard against no questions
+            const questions = config.modalQuestions || [];
+
+            if(index < questions.length) {
+                const q = questions[index];
+                // Handle options which are objects {value, text}
+                const optionsHTML = q.options.map(opt => {
+                    const val = opt.value || opt; // fallback if string
+                    const txt = opt.text || opt;
+                    return `<button class="option-pill hover-target" onclick="handleAnswer('${q.id}', '${val}', ${index})">${txt}</button>`;
+                }).join('');
+
+                content.innerHTML = `
+                    <span class="eyebrow">Question ${index+1} of ${questions.length}</span>
+                    <h3 style="font-size: 2.5rem; margin-bottom: 2rem;">${q.questionText}</h3>
+                    <div>${optionsHTML}</div>
+                `;
+            } else {
+                submitFinalAnswers();
+            }
+        }
+
+        window.handleAnswer = (id, val, idx) => {
+            collectedAnswers[id] = val;
+            openModal(idx + 1);
+        };
+
+        async function submitFinalAnswers() {
+            // 1. Process Answers into Array
+            const questions = config.modalQuestions || [];
+            const modalQuestionResponses = [];
+            
+            for (const [qId, answerVal] of Object.entries(collectedAnswers)) {
+                const qObj = questions.find(q => q.id === qId);
+                if (qObj) {
+                    const optObj = qObj.options.find(o => o.value === answerVal);
+                    modalQuestionResponses.push({
+                        question: qObj.questionText,
+                        answer: optObj ? optObj.text : answerVal
+                    });
+                }
+            }
+
+            // 2. Build Final Payload
+            const finalPayload = {
+                ...(storedInitialPayload || {}),
+                formType: "modal_answers",
+                submittedAt: new Date().toISOString(),
+                questions: modalQuestionResponses
+            };
+
+            // 3. Send to Webhook
+            const visitorUrl = config.settings.visitorWebhookUrl;
+            if (visitorUrl) {
+                try {
+                    await fetch(visitorUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(finalPayload)
+                    });
+                } catch (err) {
+                    console.error("Final submit error", err);
+                }
+            }
+
+            // 4. Show Success UI
+            showSuccess();
+        }
+
+        function showSuccess() {
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <h3 style="font-size: 3rem; margin-bottom: 1rem; color: var(--accent-rose);">Merci.</h3>
+                <p style="font-size: 1.2rem; color: var(--text-light);">The portfolio has been sent to your device.</p>
+                <button onclick="location.reload()" class="btn-pearl hover-target" style="margin-top:2rem;">Close</button>
+            `;
+            fireSparkles();
+        }
+
+        function fireSparkles() {
+            const end = Date.now() + 3000;
+            // Use config colors or fallback
+            const colors = config.settings.confettiColors || ['#d4af9b', '#ffffff', '#fdfcfb']; 
+            
+            (function frame() {
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors,
+                    shapes: ['circle', 'square'],
+                    scalar: 0.8
+                });
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors,
+                    shapes: ['circle', 'square'],
+                    scalar: 0.8
+                });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        }
+
+        /**
+         * ==================================================================
+         * CANVAS: SILK WAVE EFFECT
+         * ==================================================================
+         */
+        function initSilkCanvas() {
+            const c = document.getElementById('silk-canvas');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            let w, h;
+            let nodes = [];
+
+            function resize() { 
+                w = c.width = window.innerWidth; 
+                h = c.height = window.innerHeight; 
+                createNodes();
+            }
+
+            function createNodes() {
+                nodes = [];
+                for(let i=0; i<50; i++) {
+                    nodes.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        r: Math.random() * 150 + 50
+                    });
+                }
+            }
+
+            function loop() {
+                ctx.clearRect(0,0,w,h);
+                
+                nodes.forEach(n => {
+                    n.x += n.vx; n.y += n.vy;
+                    if(n.x < -100) n.x = w+100; if(n.x > w+100) n.x = -100;
+                    if(n.y < -100) n.y = h+100; if(n.y > h+100) n.y = -100;
+                    
+                    // Draw Soft Orbs (Bokeh)
+                    const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r);
+                    g.addColorStop(0, "rgba(212, 175, 155, 0.15)"); // Rose tint
+                    g.addColorStop(1, "rgba(255, 255, 255, 0)");
+                    
+                    ctx.fillStyle = g;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(loop);
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+            loop();
+        }
+
+        /**
+         * ==================================================================
+         * CUSTOM CURSOR
+         * ==================================================================
+         */
+        function initCursor() {
+            const cursor = document.getElementById('cursor');
+            if (!cursor) return;
+            document.addEventListener('mousemove', e => {
+                cursor.style.top = e.clientY + 'px';
+                cursor.style.left = e.clientX + 'px';
+            });
+            
+            // Hover Effects
+            document.addEventListener('mouseover', e => {
+                if(e.target.classList.contains('hover-target') || e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+                    cursor.classList.add('hovered');
+                } else {
+                    cursor.classList.remove('hovered');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
